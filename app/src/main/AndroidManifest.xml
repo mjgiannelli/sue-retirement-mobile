@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.markgiannelli.sue_retirement_mobile">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BibleVerseApp"
         android:allowBackup="true"

@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface BibleVerseApi {
     @GET("api/?passage=votd&type=json")
-    suspend fun getBibleVerseData() : BibleVerseDto
+    suspend fun getBibleVerseData() : List<BibleVerseDataObjectDto>
 }

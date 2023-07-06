@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,13 +16,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import java.time.DayOfWeek
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.Year
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -44,14 +47,46 @@ fun Countdown(targetDateTime: LocalDateTime) {
     val minutes = timeLeft.toMinutes() % 60
     val seconds = timeLeft.seconds % 60
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "Countdown: ")
-        Text(text = "Years: $years")
-        Text(text = "Days: $days")
-        Text(text = "Hours: $hours")
-        Text(text = "Minutes: $minutes")
-        Text(text = "Seconds: $seconds")
-        Text(text = "Working Days Left: $businessDaysLeft")
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        ColumnWithText(value = years, text = "Years")
+        ColumnWithText(value = days, text = "Days")
+        ColumnWithText(value = hours, text = "Hours")
+        ColumnWithText(value = minutes, text = "Minutes")
+        ColumnWithText(value = seconds, text = "Seconds")
+    }
+    Row(modifier = Modifier.padding(32.dp)) {
+        Text(
+            text = "Working Days Left: ",
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp
+        )
+        Text(
+            text = "$businessDaysLeft",
+            color = Color(0xFF006400),
+            fontWeight = FontWeight.Bold,
+            fontSize = 30.sp
+        )
+    }
+}
+
+@Composable
+fun ColumnWithText(value: Long, text: String) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "$value",
+            fontWeight = FontWeight.Bold,
+            fontSize = 40.sp
+        )
+        Text(
+            text = text,
+            fontSize = 20.sp
+        )
     }
 }
 

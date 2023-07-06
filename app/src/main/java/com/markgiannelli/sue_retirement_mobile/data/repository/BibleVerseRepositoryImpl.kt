@@ -14,7 +14,7 @@ class BibleVerseRepositoryImpl @Inject constructor(
     override suspend fun getBibleVerseData(): Resource<BibleVerseInfo> {
         return try {
             Resource.Success(
-                data = api.getBibleVerseData().toBibleVerseInfo()
+                data = api.getBibleVerseData().first().toBibleVerseInfo()
             )
         } catch(e: Exception) {
             e.printStackTrace()

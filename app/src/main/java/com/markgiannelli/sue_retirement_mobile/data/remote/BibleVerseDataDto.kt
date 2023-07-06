@@ -1,9 +1,8 @@
 package com.markgiannelli.sue_retirement_mobile.data.remote
 
-import com.markgiannelli.sue_retirement_mobile.domain.bibleverse.BibleVerseData
 import com.squareup.moshi.Json
 
-data class BibleVerseDataDto(
+data class BibleVerseDataObjectDto(
     @field:Json(name = "bookname")
     val bookname: String,
     @field:Json(name = "chapter")
